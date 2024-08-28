@@ -1,0 +1,16 @@
+{
+    "manifest_version": 3,
+    "name": "Uniweb Enhancer",
+    "version": "1.0",
+    "description": "Aggiungi/modifica i tuoi voti e *simula* la tua nuova media su Uniweb.",
+    "content_scripts": [
+        {
+            "matches": [
+                "https://uniweb.unipd.it/auth/studente/Libretto/LibrettoHome.do*"
+            ],
+            "js": [
+                "uniweb-enhancer.js"
+            ]
+        }
+    ]
+}
