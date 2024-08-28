@@ -50,7 +50,9 @@ function injectAndParse() {
         input.oninput = (ev) => onChangeVoto(i, <HTMLInputElement> ev.target);
 
         votoTd.replaceChildren(input);
-        dataTd.innerHTML = data || '';
+
+        const dataNode = document.createTextNode(data || '');
+        dataTd.appendChild(dataNode);
         tr.insertBefore(dataTd, votoTd.nextElementSibling);
 
         esami.push({nome, cfu, voto, data});
