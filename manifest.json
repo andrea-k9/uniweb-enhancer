@@ -1,7 +1,8 @@
 {
+    "$schema": "https://json.schemastore.org/webextension.json",
     "manifest_version": 2,
     "name": "Uniweb Enhancer",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Aggiungi/modifica i tuoi voti e simula la tua nuova media su Uniweb.",
     "content_scripts": [
         {
@@ -12,5 +13,10 @@
                 "uniweb-enhancer.js"
             ]
         }
-    ]
+    ],
+    "browser_specific_settings": {
+        "gecko": {
+            "update_url": "https://github.com/andrea-k9/uniweb-enhancer/raw/main/updates.json"
+        }
+    }
 }
