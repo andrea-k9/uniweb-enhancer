@@ -1,7 +1,8 @@
 {
     "compilerOptions": {
         "target": "ES6",
-        "alwaysStrict": true
+        "alwaysStrict": true,
+        "removeComments": true,
     },
     "strict": true,
     "noImplicitAny": true,
@@ -9,5 +10,5 @@
     "strictFunctionTypes": true,
     "noImplicitThis": true,
     "noImplicitReturns": true,
-    "noUnusedLocals": true
+    "noUnusedLocals": true,
 }
