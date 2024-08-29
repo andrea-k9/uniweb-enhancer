@@ -68,7 +68,8 @@ function injectAndParse() {
  */
 function onChangeVoto(esameId: number, target: HTMLInputElement) {
     const newVotoTmp = parseInt(target.value);
-    const newVoto = Number.isNaN(newVotoTmp) || newVotoTmp < 0 ? null : newVotoTmp;
+    let newVoto = Number.isNaN(newVotoTmp) || newVotoTmp < 0 ? null : newVotoTmp;
+    if (newVoto > 30) newVoto = 30;
     target.value = newVoto?.toString() || '';
 
     esami[esameId].voto = newVoto;
