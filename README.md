@@ -8,7 +8,10 @@ This extension modifies the user interface of [Uniweb's booklet](https://uniweb.
     <img alt="Uniweb Enhancer Preview" src="img/preview_eng.jpg">
     <figcaption>English Preview</figcaption>
 </figure>
+
+---
+
 <figure>
-    <img src="img/preview_ita.jpg" alt="Anteprima di Uniweb Enhancer">
+    <img alt="Anteprima di Uniweb Enhancer" src="img/preview_ita.jpg">
     <figcaption>Anteprima in italiano</figcaption>
 </figure>
