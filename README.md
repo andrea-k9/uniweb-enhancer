@@ -5,13 +5,13 @@ This extension modifies the user interface of [Uniweb's booklet](https://uniweb.
 
 ## Preview
 <figure>
-    <img alt="Uniweb Enhancer Preview" src="img/preview_eng.jpg">
+    <img alt="Uniweb Enhancer Preview" src="img/preview_eng.png">
     <figcaption>English Preview</figcaption>
 </figure>
 
 ---
 
 <figure>
-    <img alt="Anteprima di Uniweb Enhancer" src="img/preview_ita.jpg">
+    <img alt="Anteprima di Uniweb Enhancer" src="img/preview_ita.png">
     <figcaption>Anteprima in italiano</figcaption>
 </figure>
