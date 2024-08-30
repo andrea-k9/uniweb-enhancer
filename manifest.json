@@ -4,6 +4,7 @@
     "name": "Uniweb Enhancer",
     "version": "1.0.2",
     "description": "Aggiungi/modifica i tuoi voti e simula la tua nuova media su Uniweb.",
+    "homepage_url": "https://github.com/andrea-k9/uniweb-enhancer/",
     "content_scripts": [
         {
             "matches": [
