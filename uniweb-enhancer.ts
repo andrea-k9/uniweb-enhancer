@@ -23,16 +23,18 @@ const observer = new MutationObserver(() => {
 observer.observe(target, { attributes : true, attributeFilter : ['style'] });
 
 /**
- * Splits 'Voto' ('Grade') and 'Data' ('Date') in two different columns,
+ * Splits 'Grade' and 'Exam Date' in two different columns,
  * then replaces the label with the grade with an <input> element.
  */
 function injectAndParse() {
+    const pageLang = document.documentElement.lang;
+
     // Splitting headers
     const gradeHeader = document.getElementById('tableLibrettoth6');
-    gradeHeader.innerHTML = 'Voto';
-    const dateHeader = gradeHeader.cloneNode() as HTMLElement;
+    gradeHeader.innerHTML = pageLang === 'it' ? 'Voto' : 'Grade';
+    const dateHeader = gradeHeader.cloneNode(true) as HTMLElement;
     dateHeader.id = 'tableLibrettoth61';
-    dateHeader.innerHTML = 'Data';
+    dateHeader.innerHTML = pageLang === 'it' ? 'Data Esame' : 'Exam Date';
     gradeHeader.parentNode.insertBefore(dateHeader, gradeHeader.nextElementSibling);
 
     // Splitting columns in table body and injecting the <input> element
