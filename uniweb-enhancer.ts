@@ -7,7 +7,20 @@ interface Exam {
 
 const exams : Exam[] = [];
 
-setTimeout(injectAndParse, 1000);
+/**
+ * Calls injectAndParse() when the page is fully loaded.
+ * In particular, when #tableLibretto.style.display mutates to 'none' for the first time.
+ */
+let initialized = false;
+const target = document.getElementById('tableLibretto');
+const observer = new MutationObserver(() => {
+    if (!initialized && target.style.display !== 'none') {
+        injectAndParse();
+        initialized = true;
+        observer.disconnect();
+    }
+});
+observer.observe(target, { attributes : true, attributeFilter : ['style'] });
 
 /**
  * Splits 'Voto' ('Grade') and 'Data' ('Date') in two different columns,
