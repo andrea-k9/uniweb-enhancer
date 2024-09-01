@@ -1,98 +1,98 @@
-interface Esame {
-    nome: string,
-    cfu: number,
-    voto: number | null,
-    data: string | null,
+interface Exam {
+    name: string,
+    credits: number,
+    grade: number | null,
+    date: string | null,
 }
 
-const esami : Esame[] = [];
+const exams : Exam[] = [];
 
 setTimeout(injectAndParse, 1000);
 
 /**
- * Splits 'Voto' and 'Data' in two different columns,
+ * Splits 'Voto' ('Grade') and 'Data' ('Date') in two different columns,
  * then replaces the label with the grade with an <input> element.
  */
 function injectAndParse() {
     // Splitting headers
-    const votoHeader = document.getElementById('tableLibrettoth6');
-    votoHeader.innerHTML = 'Voto';
-    const dataHeader = votoHeader.cloneNode() as HTMLElement;
-    dataHeader.id = 'tableLibrettoth61';
-    dataHeader.innerHTML = 'Data';
-    votoHeader.parentNode.insertBefore(dataHeader, votoHeader.nextElementSibling);
+    const gradeHeader = document.getElementById('tableLibrettoth6');
+    gradeHeader.innerHTML = 'Voto';
+    const dateHeader = gradeHeader.cloneNode() as HTMLElement;
+    dateHeader.id = 'tableLibrettoth61';
+    dateHeader.innerHTML = 'Data';
+    gradeHeader.parentNode.insertBefore(dateHeader, gradeHeader.nextElementSibling);
 
     // Splitting columns in table body and injecting the <input> element
-    const tableLibretto = document.getElementById('tableLibretto');
-    const tbody = tableLibretto!.children[1].children;
+    const bookletTable = document.getElementById('tableLibretto');
+    const tbody = bookletTable!.children[1].children;
     for (let i = 0; i < tbody.length; i++) {
         const tr = tbody[i];
 
-        const nomeTd = tr.children[0];
-        const nome = nomeTd.children[0].innerHTML;
+        const nameTd = tr.children[0];
+        const name = nameTd.children[0].innerHTML;
 
-        const cfuTd = tr.children[2];
-        const cfu = Number(cfuTd.innerHTML);
+        const creditsTd = tr.children[2];
+        const credits = Number(creditsTd.innerHTML);
 
-        const votoTd = tr.children[5];
-        const votoTmp = parseInt(votoTd.innerHTML);
-        const voto = Number.isNaN(votoTmp) ? null : votoTmp;
+        const gradeTd = tr.children[5];
+        const gradeTmp = parseInt(gradeTd.innerHTML);
+        const grade = Number.isNaN(gradeTmp) ? null : gradeTmp;
 
-        const dataTd = votoTd.cloneNode() as HTMLElement;
-        const data = votoTd.innerHTML.match(/\d{1,2}\/\d{1,2}\/\d{4}/)?.[0] || null;
+        const dateTd = gradeTd.cloneNode() as HTMLElement;
+        const date = gradeTd.innerHTML.match(/\d{1,2}\/\d{1,2}\/\d{4}/)?.[0] || null;
 
         const input = document.createElement('input');
         input.type = 'text';
-        input.id = `voto${i}`;
-        input.value = voto?.toString() || '';
+        input.id = `grade${i}`;
+        input.value = grade?.toString() || '';
         input.style.width = '4em';
         input.style.textAlign = 'center';
-        input.oninput = (ev) => onChangeVoto(i, <HTMLInputElement> ev.target);
+        input.oninput = (ev) => onChangeGrade(i, <HTMLInputElement> ev.target);
 
-        votoTd.replaceChildren(input);
+        gradeTd.replaceChildren(input);
 
-        const dataNode = document.createTextNode(data || '');
-        dataTd.appendChild(dataNode);
-        tr.insertBefore(dataTd, votoTd.nextElementSibling);
+        const dateNode = document.createTextNode(date || '');
+        dateTd.appendChild(dateNode);
+        tr.insertBefore(dateTd, gradeTd.nextElementSibling);
 
-        esami.push({nome, cfu, voto, data});
+        exams.push({name, credits, grade, date});
     }
     console.log('Uniweb Enhancer Extension loaded!');
-    console.log(esami);
+    console.log(exams);
 }
 
 /**
- * Event Handler: when an <input> element is modified, this validates the grade and updates 'esami' array.
- * @param esameId The id of the exam.
+ * Event Handler: when an <input> element is modified, this validates the grade and updates 'exams' array.
+ * @param examId The id of the exam.
  * @param target The <input> element that triggered the 'change' or 'input' event.
  */
-function onChangeVoto(esameId: number, target: HTMLInputElement) {
-    const newVotoTmp = parseInt(target.value);
-    let newVoto = Number.isNaN(newVotoTmp) || newVotoTmp < 0 ? null : newVotoTmp;
-    if (newVoto > 30) newVoto = 30;
-    target.value = newVoto?.toString() || '';
+function onChangeGrade(examId: number, target: HTMLInputElement) {
+    const newGradeTmp = parseInt(target.value);
+    let newGrade = Number.isNaN(newGradeTmp) || newGradeTmp < 0 ? null : newGradeTmp;
+    if (newGrade > 30) newGrade = 30;
+    target.value = newGrade?.toString() || '';
 
-    esami[esameId].voto = newVoto;
-    updateMedie();
+    exams[examId].grade = newGrade;
+    updateAverages();
 }
 
-function updateMedie() {
-    changeMedia(calculateMedia());
-    changeMedia(calculateMedia(true), true);
+function updateAverages() {
+    changeAverage(calculateAverage());
+    changeAverage(calculateAverage(true), true);
 }
 
 /**
- * Calculates the average reading from 'esami' array.
+ * Calculates the average reading from 'exams' array.
  * @param weighted If true, a weighted average will be returned; if false, the arithmetic one.
  * @returns The requested average.
  */
-function calculateMedia(weighted = false) {
+function calculateAverage(weighted = false) {
     let sum = 0;
     let total = 0;
-    for (const esame of esami) {
-        if (esame.voto === null) continue;
-        const weight = weighted ? esame.cfu : 1;
-        sum += esame.voto * weight;
+    for (const exam of exams) {
+        if (exam.grade === null) continue;
+        const weight = weighted ? exam.credits : 1;
+        sum += exam.grade * weight;
         total += weight;
     }
     return sum / total;
@@ -103,11 +103,11 @@ function calculateMedia(weighted = false) {
  * @param avg The new average value.
  * @param weighted If true, the weighted average will be updated; if false, the arithmetic one.
  */
-function changeMedia(avg: number, weighted = false) {
+function changeAverage(avg: number, weighted = false) {
     const index = weighted ? 1 : 0;
 
-    const boxMedie = document.getElementById('boxMedie');
-    const ul = boxMedie.children[0].children;
-    const mediaTxt = ul[index].childNodes[2];
-    mediaTxt.textContent = ` ${avg.toLocaleString(undefined, {maximumFractionDigits: 3})} / 30`;
+    const averagesBox = document.getElementById('boxMedie');
+    const ul = averagesBox.children[0].children;
+    const averageTxt = ul[index].childNodes[2];
+    averageTxt.textContent = ` ${avg.toLocaleString(undefined, {maximumFractionDigits: 3})} / 30`;
 }
