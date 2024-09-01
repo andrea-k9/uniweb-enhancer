@@ -31,10 +31,10 @@ function injectAndParse() {
 
     // Splitting headers
     const gradeHeader = document.getElementById('tableLibrettoth6');
-    gradeHeader.innerHTML = pageLang === 'it' ? 'Voto' : 'Grade';
+    gradeHeader.childNodes[0].textContent = pageLang === 'it' ? 'Voto' : 'Grade';
     const dateHeader = gradeHeader.cloneNode(true) as HTMLElement;
     dateHeader.id = 'tableLibrettoth61';
-    dateHeader.innerHTML = pageLang === 'it' ? 'Data Esame' : 'Exam Date';
+    dateHeader.childNodes[0].textContent = pageLang === 'it' ? 'Data Esame' : 'Exam Date';
     gradeHeader.parentNode.insertBefore(dateHeader, gradeHeader.nextElementSibling);
 
     // Splitting columns in table body and injecting the <input> element
