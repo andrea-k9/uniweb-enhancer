@@ -1,0 +1,12 @@
+{
+    "addons": {
+        "{8b1de384-49f3-4ab5-af8b-015250da1271}": {
+            "updates": [
+                {
+                    "version": "1.0.2",
+                    "update_link": "https://github.com/andrea-k9/uniweb-enhancer/releases/download/v1.0.2/uniweb_enhancer-1.0.2.xpi"
+                }
+            ]
+        }
+    }
+}
