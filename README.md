@@ -6,7 +6,7 @@ This extension modifies the user interface of [Uniweb's booklet](https://uniweb.
 > Don't worry: changes to your grades are only made on your computer, teachers won't see anything different, and when you refresh the page, everything will be as it was before.
 
 ## Installation
-[<img alt="Add to Firefox" height="55" src="img/add_to_firefox.png">](https://github.com/andrea-k9/uniweb-enhancer/releases/download/v1.0.2/uniweb_enhancer-1.0.2.xpi)
+[<img alt="Add to Firefox" height="55" src="img/add_to_firefox.png">](https://github.com/andrea-k9/uniweb-enhancer/releases/download/v1.0.3/uniweb_enhancer-1.0.3.xpi)
 [<img alt="Add to Chrome" height="55" src="img/add_to_chrome.png">](https://chromewebstore.google.com/detail/uniweb-enhancer/kbaphknjdlokbmglcnfoibogenldhmoe)
 
 ## Preview
